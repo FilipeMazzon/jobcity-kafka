@@ -61,6 +61,18 @@ services:
       - "3000:3000"
       - "9229:9229"
     command: npm run start:dev
+  kafka-producer:
+    build: ./kafka-producer
+    container_name: kafka-producer
+    depends_on:
+      - kafka
+    volumes:
+      - "./kafka-producer:/src/app"
+    working_dir: "/src/app"
+    networks:
+      - broker-kafka
+    ports:
+      - "3001:3001"
 networks:
   broker-kafka:
     driver: bridge
