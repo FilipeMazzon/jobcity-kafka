@@ -5,7 +5,6 @@ import * as cors from 'cors';
 dotenv.config();
 
 const app: express.Express = express();
-const port = process.env.PORT;
 
 //middlewares
 app.use(cors());
