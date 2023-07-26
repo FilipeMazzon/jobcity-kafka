@@ -1,6 +1,9 @@
 import * as http from 'http';
 import app from './app';
 
+//this is to start listening the emails forever.
+import './src/domain/message/message.listener';
+
 import {onError, onListening, normalizePort} from './src/infrastructure/utils/server.util';
 
 /**
