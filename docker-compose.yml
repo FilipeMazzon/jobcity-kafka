@@ -64,6 +64,8 @@ services:
   kafka-producer:
     build: ./kafka-producer
     container_name: kafka-producer
+    env_file:
+      - kafka-producer/.env
     depends_on:
       - kafka
     volumes:

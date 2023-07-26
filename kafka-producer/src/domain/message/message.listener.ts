@@ -40,5 +40,5 @@ mailListener.on('mail', (mail): void => {
 });
 
 mailListener.on('error', (err) => {
-    console.error('Mail listener error:', err);
+    console.error('Mail listener error:');
 });

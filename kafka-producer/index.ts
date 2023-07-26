@@ -2,7 +2,7 @@ import * as http from 'http';
 import app from './app';
 
 //this is to start listening the emails forever.
-import './src/domain/message/message.listener';
+// import './src/domain/message/message.listener';
 
 import {onError, onListening, normalizePort} from './src/infrastructure/utils/server.util';
 
@@ -10,7 +10,7 @@ import {onError, onListening, normalizePort} from './src/infrastructure/utils/se
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '8080');
+const port = normalizePort(process.env.PORT || '3001');
 const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);

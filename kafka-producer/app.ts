@@ -1,7 +1,8 @@
-
 import * as express from "express";
 import * as dotenv from 'dotenv'
 import * as cors from 'cors';
+import MessageRouter from "./src/domain/message/message.router";
+
 dotenv.config();
 
 const app: express.Express = express();
@@ -11,10 +12,6 @@ app.use(cors());
 
 app.use(express.json());
 
-app.get('/', (req: express.Request, res: express.Response) => {
-    res.send('Express + TypeScript Server');
-});
-
-
+app.use('/message', MessageRouter);
 
 export default app;

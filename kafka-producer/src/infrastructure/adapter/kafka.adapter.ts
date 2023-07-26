@@ -8,7 +8,6 @@ export const createBroker = () => {
     })
 }
 
-
 export const sendMessage = async (kafka: Kafka, topic: string, message: Object): Promise<void> => {
     const producer = kafka.producer();
     await producer.connect();
