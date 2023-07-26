@@ -24,9 +24,9 @@ mailListener.on('server:connected', () => {
     console.log('Mail listener connected');
 });
 
-mailListener.on('mail', (mail) => {
+mailListener.on('mail', (mail): void => {
     // This event will be triggered when a new email is received
-    console.log('New email received:', mail);
+    console.log('New email received:');
     const {subject, html} = mail;
 
     sendEmailMessage(subject, html)
