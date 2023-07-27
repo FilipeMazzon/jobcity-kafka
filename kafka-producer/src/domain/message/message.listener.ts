@@ -1,6 +1,8 @@
 import * as MailListener from 'mail-listener2';
 import * as process from "process";
 import {sendEmailMessage} from "./message.service";
+import {MessageDto} from "./message.dto";
+import {validate} from "class-validator";
 
 const mailListener = new MailListener({
     username: process.env.EMAIL,
@@ -24,19 +26,20 @@ mailListener.on('server:connected', () => {
     console.log('Mail listener connected');
 });
 
-mailListener.on('mail', (mail): void => {
+mailListener.on('mail', async (mail): Promise<void> => {
     // This event will be triggered when a new email is received
-    console.log('New email received:');
-    const {subject, text} = mail;
 
-    sendEmailMessage(subject, text)
-        .then(() => {
-            console.log('email to kafka')
-        })
-        .catch(err => {
-            console.error(err);
-        });
-    // You can process the email here, e.g., extract the subject, body, sender, etc.
+    const {subject, text, html} = mail;
+    try {
+        const messageDto = new MessageDto();
+        messageDto.subject = subject;
+        messageDto.body = text || html;
+        await validate(messageDto)
+        await sendEmailMessage(messageDto)
+        console.log('email to kafka')
+    } catch (error) {
+        console.error(error)
+    }
 });
 
 mailListener.on('error', (err) => {
