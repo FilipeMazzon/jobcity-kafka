@@ -1,4 +1,4 @@
-import {Kafka, logLevel} from "kafkajs";
+import {Kafka, logLevel, ProducerRecord} from "kafkajs";
 
 export const createBroker = () => {
     return new Kafka({
@@ -11,10 +11,14 @@ export const createBroker = () => {
 export const sendMessage = async (kafka: Kafka, topic: string, message: Object): Promise<void> => {
     const producer = kafka.producer();
     await producer.connect();
-    await producer.send({
+    const send: ProducerRecord = {
         topic,
         messages: [{value: JSON.stringify(message)}]
-    })
+    }
+    console.log(send);
+    await producer.send(
+        send
+    )
 
     await producer.disconnect();
 }

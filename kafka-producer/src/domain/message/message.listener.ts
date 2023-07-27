@@ -27,9 +27,9 @@ mailListener.on('server:connected', () => {
 mailListener.on('mail', (mail): void => {
     // This event will be triggered when a new email is received
     console.log('New email received:');
-    const {subject, html} = mail;
+    const {subject, text} = mail;
 
-    sendEmailMessage(subject, html)
+    sendEmailMessage(subject, text)
         .then(() => {
             console.log('email to kafka')
         })

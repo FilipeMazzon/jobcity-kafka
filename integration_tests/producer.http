@@ -3,6 +3,6 @@ POST http://localhost:3001/message
 Content-Type: application/json
 
 {
-  "subject": "999",
-  "body": "content"
+  "subject": "subject text",
+  "body": "example message"
 }
