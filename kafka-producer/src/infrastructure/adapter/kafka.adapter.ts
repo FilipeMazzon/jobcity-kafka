@@ -4,7 +4,7 @@ export const createBroker = () => {
     return new Kafka({
         logLevel: logLevel.DEBUG,
         clientId: 'jobcity',
-        brokers: ['kafka:9092']
+        brokers: ['kafka:29092']
     })
 }
 
